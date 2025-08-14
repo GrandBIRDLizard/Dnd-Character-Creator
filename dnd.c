@@ -23,6 +23,66 @@ void find_Min(int rollVal[], int *dice)
 		(*dice)--;
 }
 
+struct Dragonborn {
+	char CreatureType[9];
+	char Size[7];
+	int Speed;
+	char DragonType[7];
+	char DamageType[9];
+};
+
+struct Dwarf {
+	char CreatureType[9];
+	char Size[7];
+	int Speed;
+};
+
+struct Elf {
+	char CreatureType[9];
+	char Size[7];
+	int Speed;
+	char Lineage[12];	
+};
+
+struct Gnome {
+	char CreatureType[9];
+	char Size[6];
+	int Speed;
+	char Lineage[13];
+};
+
+struct Goliath {
+	char CreatureType[9];
+	char Size[7];
+	int Speed;
+	char GiantType[12];
+};
+
+struct Halfling {
+	char CreatureType[9];
+	char Size[6];
+	int Speed;
+};
+
+struct Human {
+	char CreatureType[9];
+	char Size[7];
+	int Speed;
+};
+
+struct Orc {
+	char CreatureType[9];
+	char Size[7];
+	int Speed;
+};
+
+struct Tiefling {
+	char CreatureType[9];
+	char Size[7];
+	int Speed;
+	char Legacy[9];
+};
+
 int main(void)
 {
 	int stats = 6, die = 4, sum = 0;
