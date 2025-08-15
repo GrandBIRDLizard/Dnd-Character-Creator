@@ -59,7 +59,7 @@ int main(void)
 	//Bookmark
 	switch (operation) {
 		case 1:
-			struct Player character = {"Dragonborn", "Humanoid", "Medium", 30,}; 
+			struct Player dragonborn = {"Dragonborn", "Humanoid", "Medium", 30,}; 
 			printf("You have chosen Dragonborn.\nWould you like to see this races description?(Y/N)\n");
 			scanf(" %c", &ch);
 			if (ch == 'Y' || ch  == 'y') {
@@ -70,19 +70,81 @@ int main(void)
 				
 				printf("As a Dragonborn, you have these special traits.\n|Breath Weapon|\n|Damage Resistance|\n|Darkvision|\n|Draconic Flight(lvl5+)|\n");
 				printf("Draconic Ancestry:\nYour lineage stems from a dragon progenitor.\nChoose the kind of dragon from the Draconic Ancestors table.\nYour choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.\n");
-				printf("|Dragon : Damage Type|\n1.|Black : Acid|\n2.|Blue : Lightning|\n3.|Brass : Fire|\n4.|Bronze : Lightning|\n5.|Copper : Acid|\n6.|Gold : Fire|\n7.|Green : Poison|\n8.|Red : Fire|\n9.|Silver : Cold|\n10.|White : Cold|\n");
+				printf("|Dragon : Damage Type|\n1.|Black : Acid|\t2.|Blue : Lightning|\t3.|Brass : Fire|\n4.|Bronze : Lightning|\t5.|Copper : Acid|\t6.|Gold : Fire|\n7.|Green : Poison|\t8.|Red : Fire|\t\t9.|Silver : Cold|\n10.|White : Cold|\n");
 				scanf("%d", &operation);
 				switch (operation) {
 					case 1:
-						strcpy(character.DragonType, "Black");
-						strcpy(character.DamageType, "Acid");
-						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", character.DragonType, character.Race, character.CreatureType, character.Size, character.Speed, character.DamageType);
-						 
-				}
-				//printf("%d", operation);	
-				break;
-			}
+						strcpy(dragonborn.DragonType, "Black");
+						strcpy(dragonborn.DamageType, "Acid");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
+					case 2:
+						strcpy(dragonborn.DragonType, "Blue");
+						strcpy(dragonborn.DamageType, "Lightning");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
+					case 3:
+						strcpy(dragonborn.DragonType, "Brass");
+						strcpy(dragonborn.DamageType, "Fire");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
+					case 4:
+						strcpy(dragonborn.DragonType, "Bronze");
+						strcpy(dragonborn.DamageType, "Lightning");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
+					case 5:
+						strcpy(dragonborn.DragonType, "Copper");
+						strcpy(dragonborn.DamageType, "Acid");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
+					case 6:
+						strcpy(dragonborn.DragonType, "Gold");
+						strcpy(dragonborn.DamageType, "Fire");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
+					case 7:
+						strcpy(dragonborn.DragonType, "Green");
+						strcpy(dragonborn.DamageType, "Poison");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
+					case 8:
+						strcpy(dragonborn.DragonType, "Red");
+						strcpy(dragonborn.DamageType, "Fire");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
+					case 9:
+						strcpy(dragonborn.DragonType, "Silver");
+						strcpy(dragonborn.DamageType, "Cold");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
+						case 10:
+						strcpy(dragonborn.DragonType, "White");
+						strcpy(dragonborn.DamageType, "cold");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
+						break;
 
+				}
+			}
+			//end of case1
+			break;
+					case 2:
+						struct Player dwarf = {"Dwarf", "Humanoid", "Medium", 30};
+						printf("You have chosen Dwarf.\nWould you like to see this races description?(Y/N)\n");
+						scanf("%c", &ch);
+						if (ch == 'Y' || ch == 'y') {
+							printf("BIO\n");
+							break;
+						}
+						if (ch == 'N' || ch == 'n') {
+							printf("As a Dwarf, you have these special traits.\n|Darkvision|\t|Dwarven Resilience|\t|Dwarven Toughness|\n|Stonecunning|\n");
+							printf("You're a %s now! you're a %s type creature of %s size with a speed of %d.\n", dwarf.Race, dwarf.CreatureType, dwarf.Size, dwarf.Speed);
+							break;
+						} else {
+							printf("Invalid Input");
+						}
+						break;
+								
 	}
 	
 
