@@ -118,7 +118,7 @@ int main(void)
 						strcpy(dragonborn.DamageType, "Cold");
 						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
 						break;
-						case 10:
+					case 10:
 						strcpy(dragonborn.DragonType, "White");
 						strcpy(dragonborn.DamageType, "cold");
 						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", dragonborn.DragonType, dragonborn.Race, dragonborn.CreatureType, dragonborn.Size, dragonborn.Speed, dragonborn.DamageType);
