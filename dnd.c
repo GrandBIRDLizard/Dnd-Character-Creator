@@ -1,5 +1,6 @@
 #include <stdio.h> 
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 void roll_dice(int rollVal[], int dice)
@@ -66,11 +67,19 @@ int main(void)
 				break;
 			} 
 			if (ch == 'N' || ch == 'n') {
-				printf("You're a %s now! you're a %s type creature of %s size with a speed of %d\n", character.Race, character.CreatureType, character.Size, character.Speed);
+				
 				printf("As a Dragonborn, you have these special traits.\n|Breath Weapon|\n|Damage Resistance|\n|Darkvision|\n|Draconic Flight(lvl5+)|\n");
 				printf("Draconic Ancestry:\nYour lineage stems from a dragon progenitor.\nChoose the kind of dragon from the Draconic Ancestors table.\nYour choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.\n");
-				printf("|Dragon : Damage Type|\n|Black : Acid|\n|Blue : Lightning|\n|Brass : Fire|\n|Bronze : Lightning|\n|Copper : Acid|\n|Gold : Fire|\n|Green : Poison|\n|Red : Fire|\n|Silver : Cold|\n|White : Cold|\n");
-
+				printf("|Dragon : Damage Type|\n1.|Black : Acid|\n2.|Blue : Lightning|\n3.|Brass : Fire|\n4.|Bronze : Lightning|\n5.|Copper : Acid|\n6.|Gold : Fire|\n7.|Green : Poison|\n8.|Red : Fire|\n9.|Silver : Cold|\n10.|White : Cold|\n");
+				scanf("%d", &operation);
+				switch (operation) {
+					case 1:
+						strcpy(character.DragonType, "Black");
+						strcpy(character.DamageType, "Acid");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d and resistance to %s\n", character.DragonType, character.Race, character.CreatureType, character.Size, character.Speed, character.DamageType);
+						 
+				}
+				//printf("%d", operation);	
 				break;
 			}
 
