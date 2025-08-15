@@ -23,76 +23,53 @@ void find_Min(int rollVal[], int *dice)
 		(*dice)--;
 }
 
-struct Dragonborn {
-	char CreatureType[9];
-	char Size[7];
+struct Player {
+	//Universal
+	char Race[12];
+	char CreatureType[12];
+	char Size[20];
 	int Speed;
-	char DragonType[7];
-	char DamageType[9];
-};
-
-struct Dwarf {
-	char CreatureType[9];
-	char Size[7];
-	int Speed;
-};
-
-struct Elf {
-	char CreatureType[9];
-	char Size[7];
-	int Speed;
-	char Lineage[12];	
-};
-
-struct Gnome {
-	char CreatureType[9];
-	char Size[6];
-	int Speed;
-	char Lineage[13];
-};
-
-struct Goliath {
-	char CreatureType[9];
-	char Size[7];
-	int Speed;
+	//Dragonborn
+	char DragonType[8];
+	char DamageType[10];
+	//Elf & Gnome
+	char Lineage[14];
 	char GiantType[12];
-};
-
-struct Halfling {
-	char CreatureType[9];
-	char Size[6];
-	int Speed;
-};
-
-struct Human {
-	char CreatureType[9];
-	char Size[7];
-	int Speed;
-};
-
-struct Orc {
-	char CreatureType[9];
-	char Size[7];
-	int Speed;
-};
-
-struct Tiefling {
-	char CreatureType[9];
-	char Size[7];
-	int Speed;
-	char Legacy[9];
+	//Tiefling
+	char Legacy[10];
+	char Name[35];
 };
 
 int main(void)
 {
-	int stats = 6, die = 4, sum = 0;
+	int ch, operation, stats = 6, die = 4, sum = 0;
 	int sumStats[stats];
-	int rollStats[die];
+	int rollStats[die]; 
 	srand(time(NULL));
 
 	printf("\t\t\tWelcome to the DnD(5e) character Creator!\n\t\t\tfollow the instructions to create your character.\n");
 
-	printf("First choose your race.\n")
+	printf("First choose your race.\n");
+	printf("1. Dragonborn.\n2. Dwarf.\n3. Elf.\n4. Goliath.\n5. Halfling.\n6. Human.\n7. Orc.\n8. Tiefling.\n");
+
+	scanf("%d", &operation);
+
+	//Bookmark
+	switch (operation) {
+		case 1:
+			struct Player character = {"Dragonborn", "Humanoid", "Medium", 30,}; 
+			printf("You have chosen Dragonborn.\nWould you like to see this races description?(Y/N)\n");
+			ch = getchar();
+			if (getchar() == 'Y') {
+				printf("BIO\n");
+				break;
+			} else {
+				printf("You're a %s now! you're a %s type creature of %s size with a speed of %d\n", character.Race, character.CreatureType, character.Size, character.Speed);
+				break;
+			}
+
+	}
+	
 
 
 //stat rolling
