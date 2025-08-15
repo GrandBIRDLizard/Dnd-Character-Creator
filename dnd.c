@@ -42,9 +42,10 @@ struct Player {
 
 int main(void)
 {
-	int ch, operation, stats = 6, die = 4, sum = 0;
+	int operation, stats = 6, die = 4, sum = 0;
 	int sumStats[stats];
-	int rollStats[die]; 
+	int rollStats[die];
+	char ch;
 	srand(time(NULL));
 
 	printf("\t\t\tWelcome to the DnD(5e) character Creator!\n\t\t\tfollow the instructions to create your character.\n");
@@ -59,12 +60,17 @@ int main(void)
 		case 1:
 			struct Player character = {"Dragonborn", "Humanoid", "Medium", 30,}; 
 			printf("You have chosen Dragonborn.\nWould you like to see this races description?(Y/N)\n");
-			ch = getchar();
-			if (getchar() == 'Y') {
+			scanf(" %c", &ch);
+			if (ch == 'Y' || ch  == 'y') {
 				printf("BIO\n");
 				break;
-			} else {
+			} 
+			if (ch == 'N' || ch == 'n') {
 				printf("You're a %s now! you're a %s type creature of %s size with a speed of %d\n", character.Race, character.CreatureType, character.Size, character.Speed);
+				printf("As a Dragonborn, you have these special traits.\n|Breath Weapon|\n|Damage Resistance|\n|Darkvision|\n|Draconic Flight(lvl5+)|\n");
+				printf("Draconic Ancestry:\nYour lineage stems from a dragon progenitor.\nChoose the kind of dragon from the Draconic Ancestors table.\nYour choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.\n");
+				printf("|Dragon : Damage Type|\n|Black : Acid|\n|Blue : Lightning|\n|Brass : Fire|\n|Bronze : Lightning|\n|Copper : Acid|\n|Gold : Fire|\n|Green : Poison|\n|Red : Fire|\n|Silver : Cold|\n|White : Cold|\n");
+
 				break;
 			}
 
