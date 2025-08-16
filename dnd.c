@@ -56,7 +56,6 @@ int main(void)
 
 	scanf("%d", &operation);
 
-	//Bookmark
 	switch (operation) {
 		case 1:
 			struct Player dragonborn = {"Dragonborn", "Humanoid", "Medium", 30,}; 
@@ -68,7 +67,7 @@ int main(void)
 			} 
 			if (ch == 'N' || ch == 'n') {
 				
-				printf("As a Dragonborn, you have these special traits.\n|Breath Weapon|\n|Damage Resistance|\n|Darkvision|\n|Draconic Flight(lvl5+)|\n");
+				printf("As a Dragonborn, you have these special traits.\n|Breath Weapon|\t|Damage Resistance|\n|Darkvision|\t|Draconic Flight(lvl5+)|\n");
 				printf("Draconic Ancestry:\nYour lineage stems from a dragon progenitor.\nChoose the kind of dragon from the Draconic Ancestors table.\nYour choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.\n");
 				printf("|Dragon : Damage Type|\n1.|Black : Acid|\t2.|Blue : Lightning|\t3.|Brass : Fire|\n4.|Bronze : Lightning|\t5.|Copper : Acid|\t6.|Gold : Fire|\n7.|Green : Poison|\t8.|Red : Fire|\t\t9.|Silver : Cold|\n10.|White : Cold|\n");
 				scanf("%d", &operation);
@@ -131,7 +130,7 @@ int main(void)
 					case 2:
 						struct Player dwarf = {"Dwarf", "Humanoid", "Medium", 30};
 						printf("You have chosen Dwarf.\nWould you like to see this races description?(Y/N)\n");
-						scanf("%c", &ch);
+						scanf(" %c", &ch);
 						if (ch == 'Y' || ch == 'y') {
 							printf("BIO\n");
 							break;
@@ -144,7 +143,21 @@ int main(void)
 							printf("Invalid Input");
 						}
 						break;
-								
+					case 3: 
+						struct Player elf = {"Elf", "Humanoid", "Medium", 30};
+						printf("You have chosen Elf.\nWould you like to see this races description?(Y/N)\n");
+						scanf(" %c", &ch);
+						if (ch == 'Y' || ch == 'y') {
+							printf("BIO\n");
+							break;
+						}
+						if (ch == 'N' || ch == 'n') {
+							printf("As an Elf, you gave these special traits.\n|Darkvision|\t|Fey Ancestry|\n|Keen Senses|\t|Trance|\n");
+							printf("Elven Lineage: You are part of a lineage that grants you supernatural abilities.\nChoose a lineage from the Elven Lineages table. You gain the level 1 benefit of that lineage.\n");
+							printf("|Lineage : lvl1 Ability|\n|Drow : The range of your Darkvision increases to 120 feet. You also know the Dancing Lights cantrip.|\n|High Elf : You know the Prestidigitation cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Wizard spell list.|\n|Wood Elf : Your Speed increases to 35 feet. You also know the Druidcraft cantrip.|\n");
+							break;
+						}
+						//Bookmark
 	}
 	
 
