@@ -63,8 +63,8 @@ int main(void)
 			scanf(" %c", &ch);
 			if (ch == 'Y' || ch  == 'y') {
 				printf("BIO\n");
-				break;
-			} 
+			}
+
 			if (ch == 'N' || ch == 'n') {
 				
 				printf("As a Dragonborn, you have these special traits.\n|Breath Weapon|\t|Damage Resistance|\n|Darkvision|\t|Draconic Flight(lvl5+)|\n");
@@ -127,37 +127,56 @@ int main(void)
 			}
 			//end of case1
 			break;
-					case 2:
-						struct Player dwarf = {"Dwarf", "Humanoid", "Medium", 30};
-						printf("You have chosen Dwarf.\nWould you like to see this races description?(Y/N)\n");
-						scanf(" %c", &ch);
-						if (ch == 'Y' || ch == 'y') {
-							printf("BIO\n");
-							break;
-						}
-						if (ch == 'N' || ch == 'n') {
-							printf("As a Dwarf, you have these special traits.\n|Darkvision|\t|Dwarven Resilience|\t|Dwarven Toughness|\n|Stonecunning|\n");
-							printf("You're a %s now! you're a %s type creature of %s size with a speed of %d.\n", dwarf.Race, dwarf.CreatureType, dwarf.Size, dwarf.Speed);
-							break;
-						} else {
-							printf("Invalid Input");
-						}
+
+		case 2:
+			struct Player dwarf = {"Dwarf", "Humanoid", "Medium", 30};
+			printf("You have chosen Dwarf.\nWould you like to see this races description?(Y/N)\n");
+			scanf(" %c", &ch);
+			if (ch == 'Y' || ch == 'y') {
+			printf("BIO\n");
+			break;
+			}
+			if (ch == 'N' || ch == 'n') {
+				printf("As a Dwarf, you have these special traits.\n|Darkvision|\t|Dwarven Resilience|\t|Dwarven Toughness|\n|Stonecunning|\n");
+				printf("You're a %s now! you're a %s type creature of %s size with a speed of %d.\n", dwarf.Race, dwarf.CreatureType, dwarf.Size, dwarf.Speed);
+				break;
+			} else {
+				printf("Invalid Input");
+			}
+			break;
+
+		case 3: 
+			struct Player elf = {"Elf", "Humanoid", "Medium", 30};
+			printf("You have chosen Elf.\nWould you like to see this races description?(Y/N)\n");
+			scanf(" %c", &ch);
+			if (ch == 'Y' || ch == 'y') {
+				printf("BIO\n");
+				break;
+			}
+			if (ch == 'N' || ch == 'n') {
+				printf("As an Elf, you gave these special traits.\n|Darkvision|\t|Fey Ancestry|\n|Keen Senses|\t|Trance|\n");
+				printf("Elven Lineage: You are part of a lineage that grants you supernatural abilities.\nChoose a lineage from the Elven Lineages table. You gain the level 1 benefit of that lineage.\n");
+				printf("|Lineage : lvl1 Ability|\n1.|Drow : The range of your Darkvision increases to 120 feet. You also know the Dancing Lights cantrip.|\n2.|High Elf : You know the Prestidigitation cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Wizard spell list.|\n3.|Wood Elf : Your Speed increases to 35 feet. You also know the Druidcraft cantrip.|\n");
+				scanf("%d", &operation);
+				switch (operation) {
+					case 1:
+						strcpy(elf.Lineage, "Drow");
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d.\n", elf.Lineage, elf.Race, elf.CreatureType, elf.Size, elf.Speed);
 						break;
-					case 3: 
-						struct Player elf = {"Elf", "Humanoid", "Medium", 30};
-						printf("You have chosen Elf.\nWould you like to see this races description?(Y/N)\n");
-						scanf(" %c", &ch);
-						if (ch == 'Y' || ch == 'y') {
-							printf("BIO\n");
-							break;
-						}
-						if (ch == 'N' || ch == 'n') {
-							printf("As an Elf, you gave these special traits.\n|Darkvision|\t|Fey Ancestry|\n|Keen Senses|\t|Trance|\n");
-							printf("Elven Lineage: You are part of a lineage that grants you supernatural abilities.\nChoose a lineage from the Elven Lineages table. You gain the level 1 benefit of that lineage.\n");
-							printf("|Lineage : lvl1 Ability|\n|Drow : The range of your Darkvision increases to 120 feet. You also know the Dancing Lights cantrip.|\n|High Elf : You know the Prestidigitation cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Wizard spell list.|\n|Wood Elf : Your Speed increases to 35 feet. You also know the Druidcraft cantrip.|\n");
-							break;
-						}
-						//Bookmark
+					case 2:
+						strcpy(elf.Lineage, "High");
+						elf.Speed = 35;
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d.\n", elf.Lineage, elf.Race, elf.CreatureType, elf.Size, elf.Speed);
+						break;
+					case 3:
+						strcpy(elf.Lineage, "Wood");
+						elf.Speed += 5;
+						printf("You're a %s %s now! you're a %s type creature of %s size with a speed of %d.\n", elf.Lineage, elf.Race, elf.CreatureType, elf.Size, elf.Speed);
+						break;	
+				}
+			}
+			//Endofcase3Bookmark
+			break;
 	}
 	
 
