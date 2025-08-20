@@ -1,2 +1,2 @@
-TTRPG character creator-(5e compatable)
+TTRPG character creator-(5e compatible)
 written in C 
