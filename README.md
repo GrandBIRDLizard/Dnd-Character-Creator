@@ -1,1 +1,2 @@
-Dnd character creator written in C
+TTRPG character creator-(5e compatable)
+written in C 
