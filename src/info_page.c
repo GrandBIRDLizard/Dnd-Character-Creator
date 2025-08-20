@@ -16,6 +16,7 @@ PageNum InfoPage(struct Player *player) {
 	    DrawRectangle(25, 40, 750, 750, (Color){80,80,80,175});
 		DrawText("Race Info Page", 25, 40, 20, RAYWHITE);
 		DrawText(TextFormat("Current Race: %s", player->Race), 25, 80, 30, YELLOW);
+		DrawText(info->description, 30, 180, 18, RAYWHITE);
 	} else {
 		DrawText("Unknown race", 30, 80, 30, RED);
 	}
