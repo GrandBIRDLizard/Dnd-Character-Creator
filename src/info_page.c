@@ -20,6 +20,9 @@ PageNum InfoPage(struct Player *player) {
 	} else {
 		DrawText("Unknown race", 30, 80, 30, RED);
 	}
+
+	DrawLine(0, 420, 800, 420, RAYWHITE);
+
     if (GuiButton((Rectangle){25, 120, 100, 30}, "Back")) {
         return PAGE1;
     }
