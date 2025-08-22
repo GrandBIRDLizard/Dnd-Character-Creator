@@ -7,8 +7,8 @@
 PageNum RaceSelect(struct Player *player) {
     static int optionSelected = 0;
 	static int typeSelected = 0;
-    static bool dropOptionsActive = false;
-	static bool dropTypesActive = false;	
+    static bool dropOptionsActive = false; 
+	static bool dropTypesActive = false;
     const char *raceOptions = "Dragonborn;Dwarf;Elf;Goliath;Halfling;Human;Orc;Tiefling";
 	const char *dragontypes = "Black;Blue;Brass;Bronze;Copper;Gold;Green;Red;Silver;White";
 
@@ -91,7 +91,6 @@ PageNum RaceSelect(struct Player *player) {
 		dropTypesActive = !dropTypesActive;
 	}	
 	} 
-
 
 
     DrawText(TextFormat("Option selected: %s", player->Race), 10, 160, 20, RAYWHITE);
