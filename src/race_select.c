@@ -11,7 +11,6 @@ PageNum RaceSelect(struct Player *player) {
 	static bool dropTypesActive = false;	
     const char *raceOptions = "Dragonborn;Dwarf;Elf;Goliath;Halfling;Human;Orc;Tiefling";
 	const char *dragontypes = "Black;Blue;Brass;Bronze;Copper;Gold;Green;Red;Silver;White";
-	
 
     GuiLabel((Rectangle){10, 40, 200, 20}, "Choose Option:");
 

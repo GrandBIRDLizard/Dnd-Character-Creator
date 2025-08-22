@@ -15,6 +15,10 @@ int main(void) {
     GuiLoadStyleAmber();
     SetTargetFPS(60);
 
+	Image tavern = LoadImage("static/tavern.jpg");
+	ImageResize(&tavern, 800, 800);
+	Texture2D tavernbg = LoadTextureFromImage(tavern);
+
 	LoadRaceTextures();
 
     struct Player player = {0};
@@ -23,6 +27,9 @@ int main(void) {
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(DARKGRAY);
+
+
+	DrawTexture(tavernbg, 800/2 - 800/2, 800/2 - 800/2, WHITE);
 
         switch (currentPage) {
             case PAGE1: currentPage = RaceSelect(&player); break;
@@ -33,6 +40,7 @@ int main(void) {
         EndDrawing();
     }
 
+	UnloadImage(tavern);
 	UnloadRaceTextures();
     CloseWindow();
     return 0;
