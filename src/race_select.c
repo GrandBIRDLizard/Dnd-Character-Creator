@@ -6,11 +6,14 @@
 
 PageNum RaceSelect(struct Player *player) {
     static int optionSelected = 0;
+	static int lineageSelected = 0;
 	static int typeSelected = 0;
     static bool dropOptionsActive = false; 
 	static bool dropTypesActive = false;
+	static bool dropLineageActive = false;
     const char *raceOptions = "Dragonborn;Dwarf;Elf;Goliath;Halfling;Human;Orc;Tiefling";
-	const char *dragontypes = "Black;Blue;Brass;Bronze;Copper;Gold;Green;Red;Silver;White";
+	const char *dragonTypes = "Black;Blue;Brass;Bronze;Copper;Gold;Green;Red;Silver;White";
+	const char *elvenLineages = "Drow;High Elf;Wood Elf"; 
 
     GuiLabel((Rectangle){10, 40, 200, 20}, "Choose Option:");
 
@@ -83,14 +86,35 @@ PageNum RaceSelect(struct Player *player) {
 
 	DrawText(TextFormat("Damage type: %s", player->DamageType), 10, 495, 20, RAYWHITE);
 
-	if (GuiDropdownBox((Rectangle){10, 380, 200, 30}, dragontypes, &typeSelected, dropTypesActive)) {
+	if (GuiDropdownBox((Rectangle){10, 380, 200, 30}, dragonTypes, &typeSelected, dropTypesActive)) {
 		dropTypesActive = false;
 	}
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
 		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 380, 200, 30})) {
 		dropTypesActive = !dropTypesActive;
 	}	
-	} 
+	}
+
+	if (strcmp(player->Race, "Elf") == 0) {
+		DrawText(TextFormat("You are part of a lineage that grants you supernatural abilities. Choose a lineage from the Elven Lineages table. You gain the level 1 benefit of that lineage."), 10, 300, 14, RAYWHITE);
+		GuiLabel((Rectangle){10, 350, 200, 20}, "Choose Lineage:");
+		if (GuiButton((Rectangle){10, 430, 100, 30}, "Confirm Lineage ")) {
+			switch (lineageSelected) {
+				case 0: strcpy(player->Lineage, "Drow"); break;
+				case 1: strcpy(player->Lineage, "High Elf"); break;
+				case 2: strcpy(player->Lineage, "Wood Elf"); break;
+			}
+		}
+	DrawText(TextFormat("Lineage Selected: %s", player->Lineage), 10, 470, 20, RAYWHITE);
+
+	if (GuiDropdownBox((Rectangle){10, 380, 200, 30}, elvenLineages, &lineageSelected, dropLineageActive)) {
+		dropLineageActive = false;
+	}
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
+		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 380, 200, 30})) {
+		dropLineageActive = !dropLineageActive;
+	}
+	}
 
 
     DrawText(TextFormat("Option selected: %s", player->Race), 10, 160, 20, RAYWHITE);
