@@ -9,14 +9,17 @@ PageNum RaceSelect(struct Player *player) {
 	static int GoliathAncestrySelected = 0;
 	static int lineageSelected = 0;
 	static int typeSelected = 0;
+	static int legacySelected = 0;
     static bool dropOptionsActive = false; 
 	static bool dropTypesActive = false;
 	static bool dropLineageActive = false;
 	static bool dropGoliathAncestryActive = false;
+	static bool dropLegacyActive = false;
     const char *raceOptions = "Dragonborn;Dwarf;Elf;Gnome;Goliath;Halfling;Human;Orc;Tiefling";
 	const char *dragonTypes = "Black;Blue;Brass;Bronze;Copper;Gold;Green;Red;Silver;White";
 	const char *elvenLineages = "Drow;High Elf;Wood Elf";
 	const char *GoliathAncestry = "Cloud;Fire;Frost;Hill;Stone;Storm";
+	const char *legacyOptions = "Abyssal;Chthonic;Infernal";
 
     GuiLabel((Rectangle){10, 15, 200, 20}, "Choose Option:");
 
@@ -30,12 +33,17 @@ PageNum RaceSelect(struct Player *player) {
             case 1: strcpy(player->Race, "Dwarf"); break;
             case 2: strcpy(player->Race, "Elf"); break;
 			case 3: strcpy(player->Race, "Gnome"); break;
-            case 4: strcpy(player->Race, "Goliath"); break;
+            case 4: 
+				strcpy(player->Race, "Goliath");
+				player->Speed += 5;
+				break;
             case 5: strcpy(player->Race, "Halfling"); break;
             case 6: strcpy(player->Race, "Human"); break;
             case 7: strcpy(player->Race, "Orc"); break;
             case 8: strcpy(player->Race, "Tiefling"); break;
         }
+	strcpy(player->CreatureType, "Humanoid");
+	player->Speed += 30;
 	
     }
 	
@@ -88,7 +96,7 @@ PageNum RaceSelect(struct Player *player) {
 		}
 	DrawText(TextFormat("Type selected: %s", player->DragonType), 10, 410, 20, YELLOW);
 
-	DrawText(TextFormat("Damage type: %s", player->DamageType), 10, 440, 20, YELLOW);
+	DrawText(TextFormat("Damage type: %d", player->DamageType), 10, 440, 20, YELLOW);
 
 	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, dragonTypes, &typeSelected, dropTypesActive)) {
 		dropTypesActive = false;
@@ -99,6 +107,9 @@ PageNum RaceSelect(struct Player *player) {
 	}	
 	}
 
+
+
+
 	if (strcmp(player->Race, "Elf") == 0) {
 		DrawText(TextFormat("You are part of a lineage that grants you supernatural abilities.\nChoose a lineage from the Elven Lineages table.\nYou gain the level 1 benefit of that lineage."), 10, 175, 20, RAYWHITE);
 		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Lineage:");
@@ -106,7 +117,10 @@ PageNum RaceSelect(struct Player *player) {
 			switch (lineageSelected) {
 				case 0: strcpy(player->Lineage, "Drow"); break;
 				case 1: strcpy(player->Lineage, "High Elf"); break;
-				case 2: strcpy(player->Lineage, "Wood Elf"); break;
+				case 2: 
+					strcpy(player->Lineage, "Wood Elf");
+					player->Speed += 5;
+					break;
 			}
 		}
 	DrawText(TextFormat("Lineage Selected: %s", player->Lineage), 10, 410, 20, YELLOW);
@@ -119,24 +133,44 @@ PageNum RaceSelect(struct Player *player) {
 		dropLineageActive = !dropLineageActive;
 	}
 	}
-//Gnome drpdown and type
 
-//
+
+
 	if (strcmp(player->Race, "Goliath") == 0) {
 		DrawText(TextFormat("You are descended from Giants.\nChoose Your Family line,\nand be blessed with a supernatural boon from your ancestry."), 10, 175, 20, RAYWHITE);
 		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Ancestry:");
 		if (GuiButton((Rectangle){220, 360, 115, 30}, " Confirm Ancestry ")) {
 			switch (GoliathAncestrySelected) {
-				case 0: strcpy(player->GiantType, "Cloud Giant"); break;
-				case 1: strcpy(player->GiantType, "Fire Giant"); break;
-				case 2: strcpy(player->GiantType, "Frost Giant"); break;
-				case 3: strcpy(player->GiantType, "Hill Giant"); break;
-				case 4: strcpy(player->GiantType, "Stone Giant"); break;
-				case 5: strcpy(player->GiantType, "Storm Giant"); break;
+				case 0: 
+					strcpy(player->GiantType, "Cloud Giant");
+					strcpy(player->GiantBoon, "Cloud Jaunt");
+					break;
+				case 1: 
+					strcpy(player->GiantType, "Fire Giant"); 
+					strcpy(player->GiantBoon, "Fire Burn");
+					break;
+				case 2: 
+					strcpy(player->GiantType, "Frost Giant");
+					strcpy(player->GiantBoon, "Frost Chill");
+					break;
+				case 3: 
+					strcpy(player->GiantType, "Hill Giant");
+					strcpy(player->GiantBoon, "Hill Tumble");
+					break;
+				case 4: 
+					strcpy(player->GiantType, "Stone Giant");
+					strcpy(player->GiantBoon, "Stone Endrance");
+					break;
+				case 5:
+					strcpy(player->GiantType, "Storm Giant"); 
+					strcpy(player->GiantBoon, "Storm Thunder");
+					break;
 			}
 		}
 
 	DrawText(TextFormat("Ancestry Selected: %s", player->GiantType), 10, 410, 20, YELLOW);
+
+	DrawText(TextFormat("Boon: %s", player->GiantBoon), 10, 440, 20, YELLOW);
 
 	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, GoliathAncestry, &GoliathAncestrySelected, dropGoliathAncestryActive)) {
 		dropGoliathAncestryActive = false;
@@ -147,6 +181,42 @@ PageNum RaceSelect(struct Player *player) {
 	}
 	}
 
+
+
+	if (strcmp(player->Race, "Tiefling") == 0) {
+		DrawText(TextFormat("You are the recipient of a legacy that grants you supernatural abilities.\nChoose a legacy from the Fiendish Legacies table."), 10, 175, 20, RAYWHITE);
+		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Legacy:");
+		if (GuiButton((Rectangle){220, 360, 115, 30}, " Confirm Legacy ")) {
+			switch (legacySelected) {
+				case 0: 
+					strcpy(player->Legacy, "Abyssal");
+					strcpy(player->LegacyCantrip, "Poison Spray");
+					break;
+				case 1: 
+					strcpy(player->Legacy, "Chthonic"); 
+					strcpy(player->LegacyCantrip, "Chill Touch");
+					break;
+				case 2: 
+					strcpy(player->Legacy, "Infernal");
+					strcpy(player->LegacyCantrip, "Fire Bolt");
+					break;	
+			}
+		}
+
+	DrawText(TextFormat("Legacy Selected: %s", player->Legacy), 10, 410, 20, YELLOW);
+
+	DrawText(TextFormat("Legacy Cantrip: %s", player->LegacyCantrip), 10, 440, 20, YELLOW);
+
+	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, legacyOptions, &legacySelected, dropLegacyActive)) {
+		dropLegacyActive = false;
+	}
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
+		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 360, 200, 30})) {
+		dropLegacyActive = !dropLegacyActive;
+	}
+	}
+
+//
 
     DrawText(TextFormat("Option selected: %s", player->Race), 10, 90, 20, YELLOW);
 
