@@ -6,14 +6,17 @@
 
 PageNum RaceSelect(struct Player *player) {
     static int optionSelected = 0;
+	static int AncestrySelected = 0;
 	static int lineageSelected = 0;
 	static int typeSelected = 0;
     static bool dropOptionsActive = false; 
 	static bool dropTypesActive = false;
 	static bool dropLineageActive = false;
+	static bool dropAncestryActive = false;
     const char *raceOptions = "Dragonborn;Dwarf;Elf;Goliath;Halfling;Human;Orc;Tiefling";
 	const char *dragonTypes = "Black;Blue;Brass;Bronze;Copper;Gold;Green;Red;Silver;White";
-	const char *elvenLineages = "Drow;High Elf;Wood Elf"; 
+	const char *elvenLineages = "Drow;High Elf;Wood Elf";
+	const char *GoliathAncestry = "Cloud;Fire;Frost;Hill;Stone;Storm";
 
     GuiLabel((Rectangle){10, 15, 200, 20}, "Choose Option:");
 
@@ -115,7 +118,31 @@ PageNum RaceSelect(struct Player *player) {
 		dropLineageActive = !dropLineageActive;
 	}
 	}
+//Dropdown in progress
+	if (strcmp(player->Race, "Goliath") == 0) {
+		DrawText(TextFormat("You are descended from Giants.\nChoose Your Family line,\nand be blessed with a supernatural boon from your ancestry."), 10, 170, 20, RAYWHITE);
+		GuiLabel((Rectangle){10, 310, 200, 20}, "Choose Ancestry:");
+		if (GuiButton((Rectangle){220, 335, 110, 30}, " Confirm Ancestry ")) {
+			switch (AncestrySelected) {
+				case 0: strcpy(player->GiantType, "Cloud Giant"); break;
+				case 1: strcpy(player->GiantType, "Fire Giant"); break;
+				case 2: strcpy(player->GiantType, "Frost Giant"); break;
+				case 3: strcpy(player->GiantType, "Hill Giant"); break;
+				case 4: strcpy(player->GiantType, "Stone Giant"); break;
+				case 5: strcpy(player->GiantType, "Storm Giant"); break;
+			}
+		}
+	DrawText(TextFormat("Ancestry Selected: %s", player->GiantType), 10, 385, 20, YELLOW);
 
+	if (GuiDropdownBox((Rectangle){10, 335, 200, 30}, GoliathAncestry, &AncestrySelected, dropAncestryActive)) {
+		dropAncestryActive = false;
+	}
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
+		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 335, 200, 30})) {
+		dropAncestryActive = !dropAncestryActive;
+	}
+	}
+//end construction
 
     DrawText(TextFormat("Option selected: %s", player->Race), 10, 90, 20, YELLOW);
 
