@@ -6,14 +6,14 @@
 
 PageNum RaceSelect(struct Player *player) {
     static int optionSelected = 0;
-	static int AncestrySelected = 0;
+	static int GoliathAncestrySelected = 0;
 	static int lineageSelected = 0;
 	static int typeSelected = 0;
     static bool dropOptionsActive = false; 
 	static bool dropTypesActive = false;
 	static bool dropLineageActive = false;
-	static bool dropAncestryActive = false;
-    const char *raceOptions = "Dragonborn;Dwarf;Elf;Goliath;Halfling;Human;Orc;Tiefling";
+	static bool dropGoliathAncestryActive = false;
+    const char *raceOptions = "Dragonborn;Dwarf;Elf;Gnome;Goliath;Halfling;Human;Orc;Tiefling";
 	const char *dragonTypes = "Black;Blue;Brass;Bronze;Copper;Gold;Green;Red;Silver;White";
 	const char *elvenLineages = "Drow;High Elf;Wood Elf";
 	const char *GoliathAncestry = "Cloud;Fire;Frost;Hill;Stone;Storm";
@@ -24,24 +24,25 @@ PageNum RaceSelect(struct Player *player) {
         return PAGE2;
     }
 
-    if (GuiButton((Rectangle){220, 40, 110, 30}, "Confirm Race")) {
+    if (GuiButton((Rectangle){220, 40, 115, 30}, "Confirm Race")) {
         switch (optionSelected) {
             case 0: strcpy(player->Race, "Dragonborn"); break;
             case 1: strcpy(player->Race, "Dwarf"); break;
             case 2: strcpy(player->Race, "Elf"); break;
-            case 3: strcpy(player->Race, "Goliath"); break;
-            case 4: strcpy(player->Race, "Halfling"); break;
-            case 5: strcpy(player->Race, "Human"); break;
-            case 6: strcpy(player->Race, "Orc"); break;
-            case 7: strcpy(player->Race, "Tiefling"); break;
+			case 3: strcpy(player->Race, "Gnome"); break;
+            case 4: strcpy(player->Race, "Goliath"); break;
+            case 5: strcpy(player->Race, "Halfling"); break;
+            case 6: strcpy(player->Race, "Human"); break;
+            case 7: strcpy(player->Race, "Orc"); break;
+            case 8: strcpy(player->Race, "Tiefling"); break;
         }
 	
     }
 	
 	if (strcmp(player->Race, "Dragonborn") == 0) {
-		DrawText(TextFormat("Your lineage stems from a dragon progenitor.\nChoose the kind of dragon from the Draconic Ancestors table.\nYour choice affects your Breath Weapon,\nDamage Resistance traits, and your appearance."), 10, 165, 20, RAYWHITE);
-		GuiLabel((Rectangle){10, 310, 200, 20}, "Choose Type:");
-		if (GuiButton((Rectangle){220, 335, 110, 30}, " Confirm Type ")) { 
+		DrawText(TextFormat("Your lineage stems from a dragon progenitor.\nChoose the kind of dragon from the Draconic Ancestors table.\nYour choice affects your Breath Weapon,\nDamage Resistance traits, and your appearance."), 10, 175, 20, RAYWHITE);
+		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Type:");
+		if (GuiButton((Rectangle){220, 360, 115, 30}, " Confirm Type ")) { 
 			switch (typeSelected) {
 				case 0: 
 					strcpy(player->DragonType, "Black");
@@ -85,45 +86,47 @@ PageNum RaceSelect(struct Player *player) {
 					break;
 			}
 		}
-	DrawText(TextFormat("Type selected: %s", player->DragonType), 10, 385, 20, YELLOW);
+	DrawText(TextFormat("Type selected: %s", player->DragonType), 10, 410, 20, YELLOW);
 
-	DrawText(TextFormat("Damage type: %s", player->DamageType), 10, 415, 20, YELLOW);
+	DrawText(TextFormat("Damage type: %s", player->DamageType), 10, 440, 20, YELLOW);
 
-	if (GuiDropdownBox((Rectangle){10, 335, 200, 30}, dragonTypes, &typeSelected, dropTypesActive)) {
+	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, dragonTypes, &typeSelected, dropTypesActive)) {
 		dropTypesActive = false;
 	}
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
-		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 335, 200, 30})) {
+		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 360, 200, 30})) {
 		dropTypesActive = !dropTypesActive;
 	}	
 	}
 
 	if (strcmp(player->Race, "Elf") == 0) {
-		DrawText(TextFormat("You are part of a lineage that grants you supernatural abilities.\nChoose a lineage from the Elven Lineages table.\nYou gain the level 1 benefit of that lineage."), 10, 170, 20, RAYWHITE);
-		GuiLabel((Rectangle){10, 310, 200, 20}, "Choose Lineage:");
-		if (GuiButton((Rectangle){220, 335, 110, 30}, " Confirm Lineage ")) {
+		DrawText(TextFormat("You are part of a lineage that grants you supernatural abilities.\nChoose a lineage from the Elven Lineages table.\nYou gain the level 1 benefit of that lineage."), 10, 175, 20, RAYWHITE);
+		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Lineage:");
+		if (GuiButton((Rectangle){220, 360, 115, 30}, " Confirm Lineage ")) {
 			switch (lineageSelected) {
 				case 0: strcpy(player->Lineage, "Drow"); break;
 				case 1: strcpy(player->Lineage, "High Elf"); break;
 				case 2: strcpy(player->Lineage, "Wood Elf"); break;
 			}
 		}
-	DrawText(TextFormat("Lineage Selected: %s", player->Lineage), 10, 385, 20, YELLOW);
+	DrawText(TextFormat("Lineage Selected: %s", player->Lineage), 10, 410, 20, YELLOW);
 
-	if (GuiDropdownBox((Rectangle){10, 335, 200, 30}, elvenLineages, &lineageSelected, dropLineageActive)) {
+	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, elvenLineages, &lineageSelected, dropLineageActive)) {
 		dropLineageActive = false;
 	}
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
-		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 335, 200, 30})) {
+		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 360, 200, 30})) {
 		dropLineageActive = !dropLineageActive;
 	}
 	}
-//Dropdown in progress
+//Gnome drpdown and type
+
+//
 	if (strcmp(player->Race, "Goliath") == 0) {
-		DrawText(TextFormat("You are descended from Giants.\nChoose Your Family line,\nand be blessed with a supernatural boon from your ancestry."), 10, 170, 20, RAYWHITE);
-		GuiLabel((Rectangle){10, 310, 200, 20}, "Choose Ancestry:");
-		if (GuiButton((Rectangle){220, 335, 110, 30}, " Confirm Ancestry ")) {
-			switch (AncestrySelected) {
+		DrawText(TextFormat("You are descended from Giants.\nChoose Your Family line,\nand be blessed with a supernatural boon from your ancestry."), 10, 175, 20, RAYWHITE);
+		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Ancestry:");
+		if (GuiButton((Rectangle){220, 360, 115, 30}, " Confirm Ancestry ")) {
+			switch (GoliathAncestrySelected) {
 				case 0: strcpy(player->GiantType, "Cloud Giant"); break;
 				case 1: strcpy(player->GiantType, "Fire Giant"); break;
 				case 2: strcpy(player->GiantType, "Frost Giant"); break;
@@ -132,17 +135,18 @@ PageNum RaceSelect(struct Player *player) {
 				case 5: strcpy(player->GiantType, "Storm Giant"); break;
 			}
 		}
-	DrawText(TextFormat("Ancestry Selected: %s", player->GiantType), 10, 385, 20, YELLOW);
 
-	if (GuiDropdownBox((Rectangle){10, 335, 200, 30}, GoliathAncestry, &AncestrySelected, dropAncestryActive)) {
-		dropAncestryActive = false;
+	DrawText(TextFormat("Ancestry Selected: %s", player->GiantType), 10, 410, 20, YELLOW);
+
+	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, GoliathAncestry, &GoliathAncestrySelected, dropGoliathAncestryActive)) {
+		dropGoliathAncestryActive = false;
 	}
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
-		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 335, 200, 30})) {
-		dropAncestryActive = !dropAncestryActive;
+		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 360, 200, 30})) {
+		dropGoliathAncestryActive = !dropGoliathAncestryActive;
 	}
 	}
-//end construction
+
 
     DrawText(TextFormat("Option selected: %s", player->Race), 10, 90, 20, YELLOW);
 
