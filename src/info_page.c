@@ -26,6 +26,9 @@ PageNum InfoPage(struct Player *player) {
     if (GuiButton((Rectangle){25, 120, 100, 30}, "Back")) {
         return PAGE1;
     }
+	if (GuiButton((Rectangle){220, 120, 100, 30}, "Next")) {
+		return PAGE3;
+	}
 
     return PAGE2;
 }

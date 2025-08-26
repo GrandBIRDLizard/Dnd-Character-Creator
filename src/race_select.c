@@ -23,7 +23,7 @@ PageNum RaceSelect(struct Player *player) {
 
     GuiLabel((Rectangle){10, 15, 200, 20}, "Choose Option:");
 
-    if (GuiButton((Rectangle){680, 750, 100, 30}, "Next")) {
+    if (GuiButton((Rectangle){680, 750, 100, 30}, "Race info")) {
         return PAGE2;
     }
 //Bookmark FIX SPEED/Darkvision
@@ -31,40 +31,51 @@ PageNum RaceSelect(struct Player *player) {
         switch (optionSelected) {
             case 0: 
 				strcpy(player->Race, "Dragonborn");
-				player->Darkvision += 60;
+				player->Speed = 30;
+				player->Darkvision = 60;
 				break;
             case 1: 
 				strcpy(player->Race, "Dwarf");
-				player->Darkvision += 120;
+				player->Speed = 30;
+				player->Darkvision = 120;
 				break;
             case 2: 
-				strcpy(player->Race, "Elf"); 
-				player->Darkvision += 60;
+				strcpy(player->Race, "Elf");
+				player->Speed = 30;
+				player->Darkvision = 60;
 				break;
 			case 3: 
 				strcpy(player->Race, "Gnome");
-				player->Darkvision += 60;
+				player->Speed = 30;
+				player->Darkvision = 60;
 				break;
             case 4: 
 				strcpy(player->Race, "Goliath");
-				player->Speed += 5;
+				player->Speed = 35;
 				break;
-            case 5: strcpy(player->Race, "Halfling"); break;
-            case 6: strcpy(player->Race, "Human"); break;
+            case 5: 
+				strcpy(player->Race, "Halfling");
+				player->Speed = 30;
+				break;
+            case 6: 
+				strcpy(player->Race, "Human");
+				player->Speed = 30;
+				break;
             case 7: 
-				strcpy(player->Race, "Orc"); 
-				player->Darkvision += 120;
+				strcpy(player->Race, "Orc");
+				player->Speed = 30;
+				player->Darkvision = 120;
 				break;
             case 8: 
 				strcpy(player->Race, "Tiefling");
-				player->Darkvision += 60;
+				player->Speed = 30;
+				player->Darkvision = 60;
 				break;
         }
-	strcpy(player->CreatureType, "Humanoid");
-	player->Speed += 30;
-	
+	strcpy(player->CreatureType, "Humanoid");	
     }
 	
+
 	if (strcmp(player->Race, "Dragonborn") == 0) {
 		DrawText(TextFormat("Your lineage stems from a dragon progenitor.\nChoose the kind of dragon from the Draconic Ancestors table.\nYour choice affects your Breath Weapon,\nDamage Resistance traits, and your appearance."), 10, 175, 20, RAYWHITE);
 		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Type:");
@@ -114,7 +125,7 @@ PageNum RaceSelect(struct Player *player) {
 		}
 	DrawText(TextFormat("Type selected: %s", player->DragonType), 10, 410, 20, YELLOW);
 
-	DrawText(TextFormat("Damage type: %d", player->Darkvision), 10, 440, 20, YELLOW);
+	DrawText(TextFormat("Damage type: %s", player->DamageType), 10, 440, 20, YELLOW);
 
 	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, dragonTypes, &typeSelected, dropTypesActive)) {
 		dropTypesActive = false;
@@ -144,7 +155,7 @@ PageNum RaceSelect(struct Player *player) {
 				case 2: 
 					strcpy(player->Lineage, "Wood Elf");
 					strcpy(player->LegacyCantrip, "Druidcraft");
-					player->Speed += 5;
+					player->Speed = 35;
 					break;
 			}
 		}
