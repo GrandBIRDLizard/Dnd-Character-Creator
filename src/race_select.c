@@ -26,21 +26,39 @@ PageNum RaceSelect(struct Player *player) {
     if (GuiButton((Rectangle){680, 750, 100, 30}, "Next")) {
         return PAGE2;
     }
-
+//Bookmark FIX SPEED/Darkvision
     if (GuiButton((Rectangle){220, 40, 115, 30}, "Confirm Race")) {
         switch (optionSelected) {
-            case 0: strcpy(player->Race, "Dragonborn"); break;
-            case 1: strcpy(player->Race, "Dwarf"); break;
-            case 2: strcpy(player->Race, "Elf"); break;
-			case 3: strcpy(player->Race, "Gnome"); break;
+            case 0: 
+				strcpy(player->Race, "Dragonborn");
+				player->Darkvision += 60;
+				break;
+            case 1: 
+				strcpy(player->Race, "Dwarf");
+				player->Darkvision += 120;
+				break;
+            case 2: 
+				strcpy(player->Race, "Elf"); 
+				player->Darkvision += 60;
+				break;
+			case 3: 
+				strcpy(player->Race, "Gnome");
+				player->Darkvision += 60;
+				break;
             case 4: 
 				strcpy(player->Race, "Goliath");
 				player->Speed += 5;
 				break;
             case 5: strcpy(player->Race, "Halfling"); break;
             case 6: strcpy(player->Race, "Human"); break;
-            case 7: strcpy(player->Race, "Orc"); break;
-            case 8: strcpy(player->Race, "Tiefling"); break;
+            case 7: 
+				strcpy(player->Race, "Orc"); 
+				player->Darkvision += 120;
+				break;
+            case 8: 
+				strcpy(player->Race, "Tiefling");
+				player->Darkvision += 60;
+				break;
         }
 	strcpy(player->CreatureType, "Humanoid");
 	player->Speed += 30;
@@ -96,7 +114,7 @@ PageNum RaceSelect(struct Player *player) {
 		}
 	DrawText(TextFormat("Type selected: %s", player->DragonType), 10, 410, 20, YELLOW);
 
-	DrawText(TextFormat("Damage type: %d", player->DamageType), 10, 440, 20, YELLOW);
+	DrawText(TextFormat("Damage type: %d", player->Darkvision), 10, 440, 20, YELLOW);
 
 	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, dragonTypes, &typeSelected, dropTypesActive)) {
 		dropTypesActive = false;
@@ -115,10 +133,17 @@ PageNum RaceSelect(struct Player *player) {
 		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Lineage:");
 		if (GuiButton((Rectangle){220, 360, 115, 30}, " Confirm Lineage ")) {
 			switch (lineageSelected) {
-				case 0: strcpy(player->Lineage, "Drow"); break;
-				case 1: strcpy(player->Lineage, "High Elf"); break;
+				case 0: 
+					strcpy(player->Lineage, "Drow");
+					strcpy(player->LineageTrait, "Dancing Lights");
+					break;
+				case 1: 
+					strcpy(player->Lineage, "High Elf");
+					strcpy(player->LegacyCantrip, "Prestidigitation");
+					break;
 				case 2: 
 					strcpy(player->Lineage, "Wood Elf");
+					strcpy(player->LegacyCantrip, "Druidcraft");
 					player->Speed += 5;
 					break;
 			}
