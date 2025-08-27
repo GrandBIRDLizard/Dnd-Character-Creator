@@ -13,9 +13,9 @@ PageNum InfoPage(struct Player *player) {
 		DrawTexture(info->texture, screenWidth/2 - info->texture.width/2,
 		                      screenHeight/2 - info->texture.height/2, WHITE);
 
-	    DrawRectangle(25, 40, 750, 750, (Color){80,80,80,175});
-		DrawText("Race Info Page", 25, 40, 20, RAYWHITE);
-		DrawText(TextFormat("Current Race: %s", player->Race), 25, 80, 30, YELLOW);
+	    DrawRectangle(25, 25, 750, 750, (Color){80,80,80,175});
+		DrawText("Race Info Page", 26, 40, 20, RAYWHITE);
+		DrawText(TextFormat("Current Race: %s", player->Race), 26, 80, 30, YELLOW);
 		DrawText(info->description, 30, 180, 18, RAYWHITE);
 	} else {
 		DrawText("Unknown race", 30, 80, 30, RED);
@@ -26,6 +26,9 @@ PageNum InfoPage(struct Player *player) {
     if (GuiButton((Rectangle){25, 120, 100, 30}, "Back")) {
         return PAGE1;
     }
+	if (GuiButton((Rectangle){675, 120, 100, 30}, "Next")) {
+		return PAGE3;
+	}
 
     return PAGE2;
 }
