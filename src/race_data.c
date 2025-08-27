@@ -14,6 +14,11 @@ RaceInfo raceDatabase[] = {
         "static/DwarfRace.png",
         "Bold and hardy, dwarves are known as skilled warriors, miners,\nand workers of stone and metal.\n\nThough they stand well under 5 feet tall, dwarves are so broad and compact that\n\nthey can weigh as much as a human standing nearly two feet taller.\n\nTheir courage and endurance are also easily a match for any of the larger folk."
     },
+	{
+		"Gnome",
+		"static/GnomeRace.png",
+		"Gnomes are magical folk created by gods of invention,\nillusions, and life underground.\n\nThe earliest gnomes were seldom seen by other folk\ndue to gnomes secretive nature and their propensity for living in forests and burrows.\n\nWhat they lack in size, they make up for in cleverness."
+	},
     {
         "Elf",
         "static/ElfRace.png",

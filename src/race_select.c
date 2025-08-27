@@ -8,16 +8,22 @@ PageNum RaceSelect(struct Player *player) {
     static int optionSelected = 0;
 	static int GoliathAncestrySelected = 0;
 	static int lineageSelected = 0;
+	static int GlineageSelected	= 0;
 	static int typeSelected = 0;
 	static int legacySelected = 0;
+	static int traitSelected = 0;
     static bool dropOptionsActive = false; 
 	static bool dropTypesActive = false;
 	static bool dropLineageActive = false;
+	static bool dropGLineageActive = false;
+	static bool dropGTraitActive = false;
 	static bool dropGoliathAncestryActive = false;
 	static bool dropLegacyActive = false;
     const char *raceOptions = "Dragonborn;Dwarf;Elf;Gnome;Goliath;Halfling;Human;Orc;Tiefling";
 	const char *dragonTypes = "Black;Blue;Brass;Bronze;Copper;Gold;Green;Red;Silver;White";
 	const char *elvenLineages = "Drow;High Elf;Wood Elf";
+	const char *gnomishLineages = "Forest Gnome;Rock Gnome";
+	const char *gnomeTraits = "Intelligence;Wisdom;Charisma";
 	const char *GoliathAncestry = "Cloud;Fire;Frost;Hill;Stone;Storm";
 	const char *legacyOptions = "Abyssal;Chthonic;Infernal";
 
@@ -26,7 +32,7 @@ PageNum RaceSelect(struct Player *player) {
     if (GuiButton((Rectangle){680, 750, 100, 30}, "Race info")) {
         return PAGE2;
     }
-//Bookmark FIX SPEED/Darkvision
+
     if (GuiButton((Rectangle){220, 40, 115, 30}, "Confirm Race")) {
         switch (optionSelected) {
             case 0: 
@@ -137,8 +143,6 @@ PageNum RaceSelect(struct Player *player) {
 	}
 
 
-
-
 	if (strcmp(player->Race, "Elf") == 0) {
 		DrawText(TextFormat("You are part of a lineage that grants you supernatural abilities.\nChoose a lineage from the Elven Lineages table.\nYou gain the level 1 benefit of that lineage."), 10, 175, 20, RAYWHITE);
 		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Lineage:");
@@ -159,6 +163,8 @@ PageNum RaceSelect(struct Player *player) {
 					break;
 			}
 		}
+
+		
 	DrawText(TextFormat("Lineage Selected: %s", player->Lineage), 10, 410, 20, YELLOW);
 
 	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, elvenLineages, &lineageSelected, dropLineageActive)) {
@@ -170,6 +176,55 @@ PageNum RaceSelect(struct Player *player) {
 	}
 	}
 
+
+	if (strcmp(player->Race, "Gnome") == 0) {
+		DrawText(TextFormat("You are part of a lineage that grants you supernatural abilities.\nChoose a lineage from the Elven Lineages table.\nYou gain the level 1 benefit of that lineage."), 10, 175, 20, RAYWHITE);
+		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Lineage:");
+		if (GuiButton((Rectangle){220, 360, 115, 30}, " Confirm Lineage ")) {
+			switch (lineageSelected) {
+				case 0: 
+					strcpy(player->Lineage, "Forest Gnome");
+					break;
+				case 1: 
+					strcpy(player->Lineage, "Rock Gnome");
+					break;
+			}
+		}
+		GuiLabel((Rectangle){430, 335, 200, 20}, "Choose trait:");
+		if (GuiButton((Rectangle){630, 360, 115, 30}, " Confirm trait ")) {
+			switch (lineageSelected) {
+				case 0: 
+					strcpy(player->LineageTrait, "Intelligence");
+					break;
+				case 1: 
+					strcpy(player->LineageTrait, "Wisdom");
+					break;
+				case 2:
+					strcpy(player->LineageTrait, "Charisma");
+					break;
+			}
+		}
+
+	DrawText(TextFormat("Trait Selected: %s", player->LineageTrait), 430, 410, 20, YELLOW);
+
+	if (GuiDropdownBox((Rectangle){420, 360, 200, 30}, gnomeTraits, &traitSelected, dropGTraitActive)) {
+		dropGTraitActive = false;
+	}
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
+		CheckCollisionPointRec(GetMousePosition(), (Rectangle){420, 360, 200, 30})) {
+		dropGTraitActive = !dropGTraitActive;
+	}
+
+	DrawText(TextFormat("Lineage Selected: %s", player->Lineage), 10, 410, 20, YELLOW);
+
+	if (GuiDropdownBox((Rectangle){10, 360, 200, 30}, gnomishLineages, &GlineageSelected, dropGLineageActive)) {
+		dropGLineageActive = false;
+	}
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
+		CheckCollisionPointRec(GetMousePosition(), (Rectangle){10, 360, 200, 30})) {
+		dropGLineageActive = !dropGLineageActive;
+	}
+	}
 
 
 	if (strcmp(player->Race, "Goliath") == 0) {
@@ -218,7 +273,6 @@ PageNum RaceSelect(struct Player *player) {
 	}
 
 
-
 	if (strcmp(player->Race, "Tiefling") == 0) {
 		DrawText(TextFormat("You are the recipient of a legacy that grants you supernatural abilities.\nChoose a legacy from the Fiendish Legacies table."), 10, 175, 20, RAYWHITE);
 		GuiLabel((Rectangle){10, 335, 200, 20}, "Choose Legacy:");
@@ -252,7 +306,6 @@ PageNum RaceSelect(struct Player *player) {
 	}
 	}
 
-//
 
     DrawText(TextFormat("Option selected: %s", player->Race), 10, 90, 20, YELLOW);
 
