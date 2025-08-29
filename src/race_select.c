@@ -37,43 +37,65 @@ PageNum RaceSelect(struct Player *player) {
         switch (optionSelected) {
             case 0: 
 				strcpy(player->Race, "Dragonborn");
+				strcpy(player->Trait1, "Breath Weapon");
+				strcpy(player->Trait2, "Damage Resistance");
+				strcpy(player->Trait3, "Draconic Flight");
 				player->Speed = 30;
 				player->Darkvision = 60;
 				break;
             case 1: 
 				strcpy(player->Race, "Dwarf");
+				strcpy(player->Trait1, "Dwarven Resilience");
+				strcpy(player->Trait2, "Dwarven Toughness");
+				strcpy(player->Trait3, "Stonecunning");
 				player->Speed = 30;
 				player->Darkvision = 120;
 				break;
             case 2: 
 				strcpy(player->Race, "Elf");
+				strcpy(player->Trait1, "Fey Ancestry");
+				strcpy(player->Trait2, "Keen Senses");
+				strcpy(player->Trait2, "Trance");
 				player->Speed = 30;
 				player->Darkvision = 60;
 				break;
 			case 3: 
 				strcpy(player->Race, "Gnome");
+				strcpy(player->Trait1, "Gnomish Cunning");
 				player->Speed = 30;
 				player->Darkvision = 60;
 				break;
             case 4: 
 				strcpy(player->Race, "Goliath");
+				strcpy(player->Trait1, "Large Form");
+				strcpy(player->Trait2, "Powerful Build");
 				player->Speed = 35;
 				break;
             case 5: 
 				strcpy(player->Race, "Halfling");
+				strcpy(player->Trait1, "Brave");
+				strcpy(player->Trait2, "Halfling Nimbleness");
+				strcpy(player->Trait3, "Luck");
+				strcpy(player->Trait4, "Naturally Stealthy");
 				player->Speed = 30;
 				break;
             case 6: 
 				strcpy(player->Race, "Human");
+				strcpy(player->Trait1, "Resourceful");
+				strcpy(player->Trait2, "Skillful");
+				strcpy(player->Trait3, "Versatile");
 				player->Speed = 30;
 				break;
             case 7: 
 				strcpy(player->Race, "Orc");
+				strcpy(player->Trait1, "Adrenaline Rush");
+				strcpy(player->Trait2, "Relentless Endurance");
 				player->Speed = 30;
 				player->Darkvision = 120;
 				break;
             case 8: 
 				strcpy(player->Race, "Tiefling");
+				strcpy(player->Trait1, "Otherworldly Presence");
 				player->Speed = 30;
 				player->Darkvision = 60;
 				break;

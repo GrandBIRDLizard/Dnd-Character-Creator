@@ -18,6 +18,11 @@ struct Player {
 	//Tiefling
     char Legacy[10];
 	char LegacyCantrip[14];
+	//Traits
+	char Trait1[22];
+	char Trait2[22];
+	char Trait3[22];
+	char Trait4[22];
     char Name[35];
 };
 
