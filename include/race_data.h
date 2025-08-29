@@ -7,6 +7,10 @@ typedef struct {
     const char *name;
     const char *imagePath;
     const char *description;
+	const char *Traitdesc1;
+	const char *Traitdesc2;
+	const char *Traitdesc3;
+	const char *Traitdesc4;
     Texture2D texture;
 } RaceInfo;
 
